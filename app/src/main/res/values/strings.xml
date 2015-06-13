@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BluetoothCar</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="openBluetooth">开启蓝牙</string>
+    <string name="closeBluetooth">关闭蓝牙</string>
+    <string name="diconnectDevice">断开连接</string>
+    <string name="searchDevices">搜索蓝牙设备</string>
+    <string name="none_found">没有搜索到蓝牙设备</string>
+    <string name="enterGame">蓝牙连接成功,是否进入游戏模式</string>
+    <string name="enter">进入</string>
+    <string name="ahead">前进</string>
+    <string name="back">后退</string>
+    <string name="acc">加速器</string>
+
+</resources>

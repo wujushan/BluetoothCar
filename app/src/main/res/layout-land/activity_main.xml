@@ -1,0 +1,98 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:id="@+id/root"
+    >
+
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:layout_centerHorizontal="true"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/toggleButton"
+        android:layout_toLeftOf="@+id/myseekbar"
+        />
+
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButton"
+        android:checked="true"
+        android:textSize="22sp"
+        android:textOff="@string/back"
+        android:textOn="@string/ahead"
+        android:shadowColor="@android:color/darker_gray"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:id="@+id/linearLayout">
+        <TextView
+            android:id="@+id/x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/z"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/acc"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/acc"/>
+    <com.juju.tools.MySeekBar
+        android:id="@+id/myseekbar"
+        android:layout_width="38dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:layout_below="@+id/acc"
+        android:gravity="center"
+        android:thumbOffset="0dp"
+        android:max="90"
+        android:progressDrawable="@drawable/progress"
+        android:thumb="@mipmap/volumecontrolover"
+        android:indeterminate="false" />
+
+        <Button
+            android:id="@+id/cancelControl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退出控制模式"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            />
+</RelativeLayout>
