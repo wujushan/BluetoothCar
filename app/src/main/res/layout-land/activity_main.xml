@@ -82,7 +82,7 @@
         android:layout_below="@+id/acc"
         android:gravity="center"
         android:thumbOffset="0dp"
-        android:max="90"
+        android:max="100"
         android:progressDrawable="@drawable/progress"
         android:thumb="@mipmap/volumecontrolover"
         android:indeterminate="false" />
