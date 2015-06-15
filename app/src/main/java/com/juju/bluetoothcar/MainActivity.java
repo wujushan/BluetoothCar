@@ -43,6 +43,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
     private boolean isAhead = true;
     private int gears = 2; //默认初始档位是2档
     public final static int SEND_COMMAND = 1;
+    public final static int RECEIVE_MESSAGE = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -237,6 +238,11 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                     bluetoothFragment.sendCommand("zhiling");
                     X.setText("receive the message");
                     break;
+//                接收到远端蓝牙发回的信息
+                case RECEIVE_MESSAGE:
+                    byte[]receiveData = (byte[]) msg.obj;
+
+
             }
         }
     };

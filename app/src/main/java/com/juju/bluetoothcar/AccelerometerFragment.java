@@ -34,7 +34,6 @@ public class AccelerometerFragment extends Fragment{
     private SensorManager sensorManager;
     private PositonChangedListener positonChangedListener;
 
-    public final static int RECIEVE_MESSAGE = 1;
 
 
     @Override
