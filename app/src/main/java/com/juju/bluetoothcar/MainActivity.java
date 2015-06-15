@@ -164,7 +164,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
     private MySeekBar.OnSeekBarChangeListener onSeekBarChangedListener = new MySeekBar.OnSeekBarChangeListener() {
 
         @Override
-        public void onProgressChanged(MySeekBar VerticalSeekBar, int progress, boolean fromUser) {
+        public void onProgressChanged(MySeekBar VerticalSeekBar, final int progress, boolean fromUser) {
             X.setText(String.valueOf(progress));
 
             if (progress > 85){
@@ -174,10 +174,12 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                     new Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            mHandler.sendEmptyMessage(SEND_COMMAND);
+                            mHandler.obtainMessage(SEND_COMMAND, progress,-1).sendToTarget();
+//                          mHandler.obtainMessage(int msg,int arg1,int arg2,Object obj);
                         }
                     },0,2000);
                     isPower = true;
+                    bar.setProgress(0); //启动小车后,加速器置为0
                 }
                 else {
 
@@ -202,11 +204,11 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
             if(isChecked){
 //                发送前进指令
                 isAhead = true;
-                ball.setDirection(0);
+                ball.setDirection(0);// 小车向前
             }else {
 //                发送后退指令
                 isAhead = false;
-                ball.setDirection(1);
+                ball.setDirection(1);//小车向后
             }
         }
     };
@@ -231,6 +233,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
             switch (msg.what){
 //               间隔性向小车发送状态指令
                 case SEND_COMMAND:
+                    int accelerator = msg.arg1;  //获取加速值
                     bluetoothFragment.sendCommand("zhiling");
                     X.setText("receive the message");
                     break;
@@ -244,6 +247,14 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         X.setText("X: " + String.valueOf(x));
         Y.setText("Y: " + String.valueOf(y));
         Z.setText("Z: " + String.valueOf(z));
+        if (toggleButton != null){
+            if (x < 5.5){
+                toggleButton.setChecked(true); //x轴小于5.5,将方向置为向前
+            }else if (x > 7.5){
+                toggleButton.setChecked(false);//x轴大于7.5,将方向置为向后
+            }
+        }
+
         //如果x小于0,需要调整y的方向
         if (x < 0 ){
             y = -(int)y;
