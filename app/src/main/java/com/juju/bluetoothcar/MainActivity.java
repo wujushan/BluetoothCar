@@ -202,11 +202,11 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
             if(isChecked){
 //                发送前进指令
                 isAhead = true;
-                ball.setDirection(0);
+                ball.setDirection(0);// 小车向前
             }else {
 //                发送后退指令
                 isAhead = false;
-                ball.setDirection(1);
+                ball.setDirection(1);//小车向后
             }
         }
     };
@@ -244,6 +244,14 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         X.setText("X: " + String.valueOf(x));
         Y.setText("Y: " + String.valueOf(y));
         Z.setText("Z: " + String.valueOf(z));
+        if (toggleButton != null){
+            if (x < 5.5){
+                toggleButton.setChecked(true); //x轴小于5.5,将方向置为向前
+            }else if (x > 7.5){
+                toggleButton.setChecked(false);//x轴大于8.0,将方向置为向后
+            }
+        }
+
         //如果x小于0,需要调整y的方向
         if (x < 0 ){
             y = -(int)y;
