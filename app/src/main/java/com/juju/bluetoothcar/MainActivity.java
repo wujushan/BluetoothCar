@@ -243,7 +243,6 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                     byte[]receiveData = (byte[]) msg.obj;
                     String strData = new String(receiveData,0,msg.arg1);
 
-
             }
         }
     };
