@@ -219,7 +219,6 @@ public class BluetoothFragment extends Fragment {
             try {
                 os.write(commandBuffer);
             } catch (IOException e) {
-                mHandler.sendEmptyMessage(BL_SOCKET_FAILED);
                 return;
             }
         }

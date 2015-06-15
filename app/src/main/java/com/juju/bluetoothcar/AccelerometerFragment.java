@@ -26,11 +26,6 @@ public class AccelerometerFragment extends Fragment{
     public interface PositonChangedListener{
         public void postionChanged(float x,float y,float z);
     }
-
-
-    private BluetoothSocket btSocket = null;
-
-    private BluetoothFragment bluetoothFragment;
     private SensorManager sensorManager;
     private PositonChangedListener positonChangedListener;
 
