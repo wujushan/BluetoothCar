@@ -166,16 +166,9 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         @Override
         public void onProgressChanged(MySeekBar VerticalSeekBar, int progress, boolean fromUser) {
             X.setText(String.valueOf(progress));
-            int accelerator = progress/10;
-            if (accelerator == 0 || accelerator == 1 || accelerator == 2){
-                gears = 1;
-            }else if (accelerator == 3 || accelerator == 4 || accelerator == 5){
-                gears = 2;
-            }else {
-                gears = 3;
-            }
-            if (gears == 3){
-//              如果档位达到最高档3,判断小车是否已经启动
+
+            if (progress > 85){
+//              如果加速器达到85或以上,判断小车是否已经启动
 //              如果还没启动,执行启动动作
                 if (!isPower){
                     new Timer().schedule(new TimerTask() {
