@@ -241,6 +241,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
 //                接收到远端蓝牙发回的信息
                 case RECEIVE_MESSAGE:
                     byte[]receiveData = (byte[]) msg.obj;
+                    String strData = new String(receiveData,0,msg.arg1);
 
 
             }
