@@ -233,6 +233,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
 //               间隔性向小车发送状态指令
                 case SEND_COMMAND:
                     int accelerator = msg.arg1; //获取加速值
+                    int direction = isAhead ? 0 : 1; //获取方向前后信息
                     bluetoothFragment.sendCommand("zhiling");
                     X.setText("receive the message");
                     break;
@@ -249,8 +250,10 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         if (toggleButton != null){
             if (x < 5.5){
                 toggleButton.setChecked(true); //x轴小于5.5,将方向置为向前
+                isAhead = true;
             }else if (x > 7.5){
                 toggleButton.setChecked(false);//x轴大于7.5,将方向置为向后
+                isAhead = false;
             }
         }
         //如果x小于0,需要调整y的方向
