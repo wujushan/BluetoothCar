@@ -178,6 +178,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                         }
                     },0,2000);
                     isPower = true;
+                    bar.setProgress(0);//启动之后,加速器置零
                 }
                 else {
 
@@ -252,7 +253,6 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                 toggleButton.setChecked(false);//x轴大于7.5,将方向置为向后
             }
         }
-
         //如果x小于0,需要调整y的方向
         if (x < 0 ){
             y = -(int)y;
