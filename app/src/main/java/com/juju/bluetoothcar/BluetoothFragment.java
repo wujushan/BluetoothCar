@@ -50,7 +50,7 @@ public class BluetoothFragment extends Fragment {
     private  Context context;
     private boolean hasConnected= false;
     private ReceiverThread receiverThread;
-//    private OutputStream os;
+    private OutputStream outputStream;
     private InputStream is;
 
     public final static int BL_SOCKET_FAILED = 4;
@@ -208,10 +208,19 @@ public class BluetoothFragment extends Fragment {
      */
     public void sendCommand(String command){
         byte[]commandBuffer = command.getBytes();
-        try {
-            OutputStream os = btSocket.getOutputStream();
-            os.write(commandBuffer);
-        }catch (IOException e) {}
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    outputStream = btSocket.getOutputStream();
+
+                } catch (IOException e) { }
+            }
+        }).start();
+        if (outputStream != null)
+            try {
+                outputStream.write(commandBuffer);
+            }catch (IOException e) {}
     }
 
     /**
