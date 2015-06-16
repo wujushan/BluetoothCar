@@ -177,7 +177,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                         public void run() {
                             mHandler.obtainMessage(SEND_COMMAND, progress,-1).sendToTarget();
                         }
-                    },0,1000);
+                    },0,3000);
                     isPower = true;
                     bar.setProgress(0);//启动之后,加速器置零
                 }

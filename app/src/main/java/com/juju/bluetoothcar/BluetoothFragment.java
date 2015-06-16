@@ -39,8 +39,8 @@ public class BluetoothFragment extends Fragment {
     private  Handler mHandler;
     private View currentView;
     private static final String TAG = "BluetoothCar";
-    BluetoothDevice btDevice = null;
-    public BluetoothSocket btSocket = null;
+    BluetoothDevice btDevice;
+    BluetoothSocket btSocket;
     private final BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private final static UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");//SPP服务号UUID
     private static final int RESQUEST_ENABLE = 0x1;
@@ -50,7 +50,7 @@ public class BluetoothFragment extends Fragment {
     private  Context context;
     private boolean hasConnected= false;
     private ReceiverThread receiverThread;
-    private OutputStream os;
+//    private OutputStream os;
     private InputStream is;
 
     public final static int BL_SOCKET_FAILED = 4;
@@ -151,9 +151,7 @@ public class BluetoothFragment extends Fragment {
                 synchronized (BluetoothFragment.this){
                     hasConnected = true;
                 }
-                try {
-                    os = btSocket.getOutputStream();
-                } catch (IOException e) {}
+
                 receiverThread = new ReceiverThread();
                 receiverThread.start();
                 getActivity().runOnUiThread(new Runnable() {
@@ -200,11 +198,6 @@ public class BluetoothFragment extends Fragment {
                 }else {
                     mPariedDevicesArrayAdapter.add(device.getName()+"\n"+device.getAddress());
                 }
-            }else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
-                if (mNewDevicsArrayAdapter.getCount() == 0){
-                    String noDevices = "没有搜索到蓝牙设备";
-                    mNewDevicsArrayAdapter.add(noDevices);
-                }
             }
         }
     };
@@ -215,13 +208,10 @@ public class BluetoothFragment extends Fragment {
      */
     public void sendCommand(String command){
         byte[]commandBuffer = command.getBytes();
-        if(os != null){
-            try {
-                os.write(commandBuffer);
-            } catch (IOException e) {
-                return;
-            }
-        }
+        try {
+            OutputStream os = btSocket.getOutputStream();
+            os.write(commandBuffer);
+        }catch (IOException e) {}
     }
 
     /**
@@ -246,6 +236,7 @@ public class BluetoothFragment extends Fragment {
             while(true){
                 try {
                     bytes = btInputStream.read(buffer);
+                    byte[]flash = buffer ;
                     mHandler.obtainMessage(RECEIVE_MESSAGE,bytes,-1,buffer).sendToTarget();
                 } catch (IOException e) {
                     break;
