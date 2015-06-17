@@ -39,8 +39,8 @@ public class BluetoothFragment extends Fragment {
     private  Handler mHandler;
     private View currentView;
     private static final String TAG = "BluetoothCar";
-    BluetoothDevice btDevice;
-    BluetoothSocket btSocket;
+    BluetoothDevice btDevice = null;
+    static BluetoothSocket btSocket = null;
     private final BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private final static UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");//SPP服务号UUID
     private static final int RESQUEST_ENABLE = 0x1;
@@ -54,7 +54,7 @@ public class BluetoothFragment extends Fragment {
     private InputStream is;
 
     public final static int BL_SOCKET_FAILED = 4;
-    public final static int RECEIVE_MESSAGE = 5;
+    public final static int RECEIVE_MESSAGE = 2;
     public BluetoothFragment(Handler mHandler){
         this.mHandler = mHandler;
     }
@@ -245,7 +245,7 @@ public class BluetoothFragment extends Fragment {
             while(true){
                 try {
                     bytes = btInputStream.read(buffer);
-                    byte[]flash = buffer ;
+//                    byte[]flash = buffer;
                     mHandler.obtainMessage(RECEIVE_MESSAGE,bytes,-1,buffer).sendToTarget();
                 } catch (IOException e) {
                     break;
@@ -261,5 +261,8 @@ public class BluetoothFragment extends Fragment {
     public boolean isOpenCheck() {
 
         return bluetoothAdapter.isEnabled();
+    }
+    public boolean isConnected(){
+        return hasConnected;
     }
 }

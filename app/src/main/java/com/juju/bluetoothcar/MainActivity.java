@@ -175,11 +175,12 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                     new Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            mHandler.obtainMessage(SEND_COMMAND, progress,-1).sendToTarget();
+                            if (bluetoothFragment.isConnected())
+                                mHandler.obtainMessage(SEND_COMMAND, progress,-1).sendToTarget();
                         }
                     },0,3000);
                     isPower = true;
-                    bar.setProgress(0);//启动之后,加速器置零
+//                    bar.setProgress(0);//启动之后,加速器置零
                 }
                 else {
 
@@ -236,12 +237,13 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                     int accelerator = msg.arg1; //获取加速值
                     int direction = isAhead ? 0 : 1; //获取方向前后信息
                     bluetoothFragment.sendCommand("zhiling");
-                    X.setText("receive the message");
+//                    X.setText("receive the message");
                     break;
 //                接收到远端蓝牙发回的信息
                 case RECEIVE_MESSAGE:
                     byte[]receiveData = (byte[]) msg.obj;
                     String strData = new String(receiveData,0,msg.arg1);
+                    X.setText(strData);
 
             }
         }
