@@ -39,8 +39,8 @@ public class BluetoothFragment extends Fragment {
     private  Handler mHandler;
     private View currentView;
     private static final String TAG = "BluetoothCar";
-    BluetoothDevice btDevice;
-    BluetoothSocket btSocket;
+    BluetoothDevice btDevice = null;
+    static BluetoothSocket btSocket = null;
     private final BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private final static UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");//SPP服务号UUID
     private static final int RESQUEST_ENABLE = 0x1;
