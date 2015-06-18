@@ -39,7 +39,6 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
     private boolean isPower =false;
     private  RelativeLayout root;
     private Button ifEnterButton,cancelControl;
-    private ToggleButton toggleButton;
     private boolean isAhead = true;
     private int gears = 2; //默认初始档位是2档
     public final static int SEND_COMMAND = 1;
@@ -81,8 +80,6 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
     private void prepareGame() {
         bar = (MySeekBar)findViewById(R.id.myseekbar);
         bar.setOnSeekBarChangeListener(onSeekBarChangedListener);
-        toggleButton = (ToggleButton)findViewById(R.id.toggleButton);
-        toggleButton.setOnCheckedChangeListener(onCheckedChangeListener);
         cancelControl = (Button)findViewById(R.id.cancelControl);
         cancelControl.setOnClickListener(onClickListener);
         getActionBar().hide();
@@ -255,15 +252,6 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         X.setText("X: " + String.valueOf(x));
         Y.setText("Y: " + String.valueOf(y));
         Z.setText("Z: " + String.valueOf(z));
-        if (toggleButton != null){
-            if (x < 5.5){
-                toggleButton.setChecked(true); //x轴小于5.5,将方向置为向前
-                isAhead = true;
-            }else if (x > 7.5){
-                toggleButton.setChecked(false);//x轴大于7.5,将方向置为向后
-                isAhead = false;
-            }
-        }
         //如果x小于0,需要调整y的方向
         if (x < 0 ){
             y = -(int)y;

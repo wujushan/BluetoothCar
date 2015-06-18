@@ -19,20 +19,16 @@
         android:layout_height="1dp"
         android:background="@android:color/black"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/toggleButton"
+        android:layout_toRightOf="@+id/cancelControl"
         android:layout_toLeftOf="@+id/myseekbar"
         />
 
 
-    <ToggleButton
+    <Button
+        android:id="@+id/cancelControl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/toggleButton"
-        android:checked="true"
-        android:textSize="22sp"
-        android:textOff="@string/back"
-        android:textOn="@string/ahead"
-        android:shadowColor="@android:color/darker_gray"
+        android:text="@string/cancelControl"
         android:layout_centerVertical="true"
         android:layout_marginLeft="15dp"
         />
@@ -87,12 +83,5 @@
         android:thumb="@mipmap/volumecontrolover"
         android:indeterminate="false" />
 
-        <Button
-            android:id="@+id/cancelControl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="退出控制模式"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            />
+
 </RelativeLayout>

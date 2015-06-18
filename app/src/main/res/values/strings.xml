@@ -13,5 +13,6 @@
     <string name="ahead">前进</string>
     <string name="back">后退</string>
     <string name="acc">加速器</string>
+    <string name="cancelControl">退出控\n制模式</string>
 
 </resources>

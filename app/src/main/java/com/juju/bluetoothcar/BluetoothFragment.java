@@ -245,7 +245,6 @@ public class BluetoothFragment extends Fragment {
             while(true){
                 try {
                     bytes = btInputStream.read(buffer);
-//                    byte[]flash = buffer;
                     mHandler.obtainMessage(RECEIVE_MESSAGE,bytes,-1,buffer).sendToTarget();
                 } catch (IOException e) {
                     break;
