@@ -11,12 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.juju.tools.MyDraw;
 import com.juju.tools.MySeekBar;
@@ -193,21 +190,6 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         @Override
         public void onStopTrackingTouch(MySeekBar VerticalSeekBar) {
 
-        }
-    };
-
-    OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-            if(isChecked){
-//                发送前进指令
-                isAhead = true;
-                ball.setDirection(0);// 小车向前
-            }else {
-//                发送后退指令
-                isAhead = false;
-                ball.setDirection(1);//小车向后
-            }
         }
     };
 
