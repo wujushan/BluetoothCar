@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
     private SlidingMenu slidingmenu;
     private BluetoothFragment bluetoothFragment;
     private AccelerometerFragment controlFragment;
-    private TextView X,Y,Z;
+    private TextView X,Y,Z,receiveShow;
     private  MySeekBar bar = null;
     private MyDraw ball;
     private boolean isPower =false;
@@ -79,6 +79,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         bar.setOnSeekBarChangeListener(onSeekBarChangedListener);
         cancelControl = (Button)findViewById(R.id.cancelControl);
         cancelControl.setOnClickListener(onClickListener);
+        receiveShow = (TextView)findViewById(R.id.receiveShow);
         getActionBar().hide();
     }
 
@@ -222,7 +223,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                 case RECEIVE_MESSAGE:
                     byte[]receiveData = (byte[]) msg.obj;
                     String strData = new String(receiveData,0,msg.arg1);
-                    X.setText(strData);
+                    receiveShow.setText(strData);
 
             }
         }
