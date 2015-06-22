@@ -256,7 +256,6 @@ public class BluetoothFragment extends Fragment {
     public BluetoothSocket getBtSocket(){
         return btSocket;
     }
-
     public boolean isOpenCheck() {
 
         return bluetoothAdapter.isEnabled();

@@ -168,9 +168,10 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
 //              如果还没启动,执行启动动作
                 if (!isPower){
                     new Timer().schedule(new TimerTask() {
+
                         @Override
                         public void run() {
-                            if (bluetoothFragment.isConnected())
+//                            if (bluetoothFragment.isConnected())
                                 mHandler.obtainMessage(SEND_COMMAND, progress,-1).sendToTarget();
                         }
                     },0,3000);
@@ -223,7 +224,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                 case RECEIVE_MESSAGE:
                     byte[]receiveData = (byte[]) msg.obj;
                     String strData = new String(receiveData,0,msg.arg1);
-                    receiveShow.setText(strData);
+//                    receiveShow.setText(strData);
 
             }
         }
@@ -240,7 +241,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         }
         if (ball != null){
             //       切换为方向向前
-            if(x<5.0){
+            if(x < 5.0){
                 isAhead = true;
                 ball.setDirection(0);
             }
