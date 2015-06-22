@@ -217,7 +217,7 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
                     int accelerator = msg.arg1; //获取加速值
                     int direction = isAhead ? 0 : 1; //获取方向前后信息
                     bluetoothFragment.sendCommand("zhiling");
-//                    X.setText("receive the message");
+                    X.setText("receive the message");
                     break;
 //                接收到远端蓝牙发回的信息
                 case RECEIVE_MESSAGE:
@@ -229,7 +229,6 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         }
     };
 
-
     @Override
     public void postionChanged(float x, float y, float z) {
         X.setText("X: " + String.valueOf(x));
@@ -239,18 +238,19 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         if (x < 0 ){
             y = -(int)y;
         }
-//       切换为方向向前
-        if(x<5.0){
-            isAhead = true;
-            ball.setDirection(0);
-        }
+        if (ball != null){
+            //       切换为方向向前
+            if(x<5.0){
+                isAhead = true;
+                ball.setDirection(0);
+            }
 //      切换为方向向后
-        else if(x > 8.0){
-            isAhead = false;
-            ball.setDirection(1);
-        }
-        if (ball != null)
+            else if(x > 8.0){
+                isAhead = false;
+                ball.setDirection(1);
+            }
             ball.deliverXY(x, y);
+        }
     }
 
     @Override
