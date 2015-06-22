@@ -239,6 +239,16 @@ public class MainActivity extends Activity implements AccelerometerFragment.Posi
         if (x < 0 ){
             y = -(int)y;
         }
+//       切换为方向向前
+        if(x<5.0){
+            isAhead = true;
+            ball.setDirection(0);
+        }
+//      切换为方向向后
+        else if(x > 8.0){
+            isAhead = false;
+            ball.setDirection(1);
+        }
         if (ball != null)
             ball.deliverXY(x, y);
     }
